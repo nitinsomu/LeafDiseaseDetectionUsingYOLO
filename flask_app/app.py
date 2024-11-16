@@ -4,7 +4,6 @@ import os
 import torch
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
 
 model = YOLO('../runs/classify/train/weights/best.pt') 
@@ -35,5 +34,4 @@ def predict():
     return "Invalid file type", 400
 
 if __name__ == '__main__':
-    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     app.run(debug=True)
