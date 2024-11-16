@@ -1,7 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 from ultralytics import YOLO
 import os
-from PIL import Image
 import torch
 
 app = Flask(__name__)
@@ -29,9 +28,6 @@ def predict():
     if file and allowed_file(file.filename):
 
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-        file.save(filepath)  
- 
-        # Perform prediction
         results = model(filepath)
         prediction = results[0].names[torch.argmax(results[0].probs.data).item()] 
         return render_template('index.html', prediction=prediction, image_url=filepath)
