@@ -1,3 +1,5 @@
 .ipynb_checkpoints
 .venv
 plant_disease_dataset
+/flask_app/static/uploads/*
+
